@@ -1,0 +1,8 @@
+*.o
+chess
+
+*.swp
+*~
+GTAGS
+GRTAGS
+GPATH
