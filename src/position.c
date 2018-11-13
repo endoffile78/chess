@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <assert.h>
+#include <string.h>
 
 #include "position.h"
 
@@ -11,6 +12,10 @@ void position_set(Position *pos, uint8_t x, uint8_t y){
 }
 
 bool position_parse(char *input, uint8_t *x, uint8_t *y){
+    if (strlen(input) < 2) {
+        return false;
+    }
+
     input[0] = tolower(input[0]);
 
     if (input[0] != 'a' && input[0] != 'b' && input[0] == 'c'
