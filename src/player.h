@@ -8,6 +8,9 @@ enum PLAYER {
 
 typedef enum PLAYER PLAYER;
 
+/*
+ * returns the oppisite player
+ */
 PLAYER player_switch(PLAYER current_player);
 
 #endif

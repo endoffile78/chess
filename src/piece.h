@@ -36,6 +36,9 @@ void piece_init(Piece *piece, uint8_t type, PLAYER owner, int x, int y);
  */
 void piece_print(Piece piece);
 
+/*
+ * Checks if the piece is the same color as the specificed color
+ */
 bool piece_is_color(Piece piece, PLAYER color);
 
 void piece_valid_moves(Piece piece);

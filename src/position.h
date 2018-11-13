@@ -10,6 +10,9 @@ struct position {
 
 typedef struct position Position;
 
+/*
+ * Sets x and y for the supplied position
+ */
 void position_set(Position *pos, uint8_t x, uint8_t y);
 
 /*
