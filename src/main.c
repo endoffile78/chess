@@ -19,7 +19,9 @@ int main(void) {
 
     //signal(SIGINT, signal_handler);
 
-    while (!game->checkmate && !quit) {
+    while (game->status != CHECKMATE
+           && game->status != STALEMATE
+           && !quit) {
         game_loop(game);
     }
 

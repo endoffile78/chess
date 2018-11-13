@@ -5,10 +5,17 @@
 #include "board.h"
 #include "player.h"
 
+enum {
+    NORMAL,
+    CHECK,
+    CHECKMATE,
+    STALEMATE,
+};
+
 struct game {
     Piece board[BOARD_ROW][BOARD_COL];
     PLAYER player_turn;
-    bool checkmate;
+    uint8_t status;
 };
 
 typedef struct game Game;

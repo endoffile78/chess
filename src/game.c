@@ -14,7 +14,7 @@ Game *game_create(void){
 
     board_create(game->board);
     game->player_turn = PLAYER_WHITE; //white always goes first
-    game->checkmate = false;
+    game->status = NORMAL;
 
     return game;
 }
