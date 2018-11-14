@@ -16,4 +16,4 @@ $(EXECUTABLE): $(OBJS)
 
 clean:
 	rm -f src/*.o
-	rm $(EXECUTABLE)
+	rm -f $(EXECUTABLE)
