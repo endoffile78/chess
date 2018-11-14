@@ -26,6 +26,7 @@ void game_loop(Game *game){
 
     Piece *piece = NULL;
     uint8_t pos_letter = 0, pos_num = 0;
+    uint8_t move_ret = 0;
 
     do {
         uint8_t piece_letter, piece_num;
@@ -44,7 +45,24 @@ void game_loop(Game *game){
             printf("Please enter the position you would like to move that piece to: ");
             scanf("%s", position);
         } while (!position_parse(position, &pos_letter, &pos_num));
-    } while (!board_move_piece(game->board, piece, pos_letter, pos_num));
+    } while ((move_ret = board_move_piece(game->board, piece, pos_letter, pos_num)) == MOVE_ILLEGAL);
+
+    char piece_name[10];
+    uint8_t type = 0;
+    piece = board_get_piece(game->board, pos_letter, pos_num);
+
+    switch (move_ret) {
+        case MOVE_SUCCESS:
+            printf("Move succesful");
+            break;
+        case MOVE_PROMOTION:
+            do {
+                printf("What would you like to promote your pawn to (queen, rook, bishop, knight): \n");
+                scanf("%s", piece_name);
+                type = piece_convert(piece_name);
+            } while (!piece_promote(piece, type));
+            break;
+    }
 
     game->player_turn = player_switch(game->player_turn);
 }

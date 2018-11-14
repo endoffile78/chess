@@ -6,6 +6,12 @@
 #define BOARD_ROW 8
 #define BOARD_COL 8
 
+enum {
+    MOVE_ILLEGAL,
+    MOVE_SUCCESS,
+    MOVE_PROMOTION,
+};
+
 /*
  * Initializes the board to a standard chess board
  */
@@ -28,9 +34,10 @@ Piece *board_get_piece(Piece board[BOARD_ROW][BOARD_COL], uint8_t letter, uint8_
 
 /*
  * Moves a piece on the board
- * returns true on succesful move
- * returns false on illegal move
+ * returns MOVE_ILLEGAL on an illegal move
+ * returns MOVE_SUCCESS on a succesful move
+ * returns MOVE_PROMOTION on a move that results in a promotion
  */
-bool board_move_piece(Piece board[BOARD_ROW][BOARD_COL], Piece *piece, uint8_t letter, uint8_t number);
+uint8_t board_move_piece(Piece board[BOARD_ROW][BOARD_COL], Piece *piece, uint8_t letter, uint8_t number);
 
 #endif

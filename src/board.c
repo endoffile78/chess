@@ -64,7 +64,7 @@ Piece *board_get_piece(Piece board[BOARD_ROW][BOARD_COL], uint8_t letter, uint8_
     return &board[number][letter];
 }
 
-bool board_move_piece(Piece board[BOARD_ROW][BOARD_COL], Piece *piece, uint8_t letter, uint8_t number){
+uint8_t board_move_piece(Piece board[BOARD_ROW][BOARD_COL], Piece *piece, uint8_t letter, uint8_t number){
     assert(board);
     assert(piece);
     assert(piece->type != NONE);
@@ -81,14 +81,8 @@ bool board_move_piece(Piece board[BOARD_ROW][BOARD_COL], Piece *piece, uint8_t l
 
     // TODO: find a better place to handle promotion
     if (piece->type == PAWN && (piece->pos.y == 7 || piece->pos.y == 0)) {
-        char piece_name[10];
-        uint8_t type = 0;
-        do {
-            printf("What would you like to promote your pawn to (queen, rook, bishop, knight): \n");
-            scanf("%s", piece_name);
-            type = piece_convert(piece_name);
-        } while (!piece_promote(piece, type));
+        return MOVE_PROMOTION;
     }
 
-    return true;
+    return MOVE_SUCCESS;
 }
