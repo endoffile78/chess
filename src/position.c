@@ -62,7 +62,5 @@ bool position_parse(char *input, uint8_t *x, uint8_t *y){
 
     *y = input[1] - 48 - 1; //convert the number into an int and subtract 1
 
-    printf("x: %d y: %d\n", *x, *y);
-
     return true;
 }
