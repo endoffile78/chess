@@ -11,6 +11,7 @@ void position_set(Position *pos, uint8_t x, uint8_t y){
     pos->y = y;
 }
 
+//TODO: figure out the best way to handle castling. King side: 0-0 queen sid: 0-0-0
 bool position_parse(char *input, uint8_t *x, uint8_t *y){
     if (strlen(input) < 2) {
         return false;

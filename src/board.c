@@ -8,6 +8,7 @@
 #include "player.h"
 
 void board_create(Piece board[BOARD_ROW][BOARD_COL]){
+    assert(board);
     for (int i = 0; i < BOARD_COL; i++) { //pawns
         piece_init(&board[1][i], PAWN, PLAYER_WHITE, 1, i);
         piece_init(&board[6][i], PAWN, PLAYER_BLACK, 6, i);
@@ -41,6 +42,7 @@ void board_create(Piece board[BOARD_ROW][BOARD_COL]){
 }
 
 void board_print(Piece board[BOARD_ROW][BOARD_COL]){
+    assert(board);
     printf("    ---------------\n");
     for (int i = 0; i < BOARD_ROW; i++) {
         printf("%d | ", i + 1);
@@ -64,12 +66,44 @@ Piece *board_get_piece(Piece board[BOARD_ROW][BOARD_COL], uint8_t letter, uint8_
     return &board[number][letter];
 }
 
+Position *board_valid_moves(Piece board[BOARD_ROW][BOARD_COL], Piece piece){
+    uint8_t board_row = 0;
+    if (piece_is_color(piece, PLAYER_BLACK)) {
+        board_row = 7;
+    }
+
+    int letter = piece.pos.y, number = piece.pos.x;
+
+    switch (piece.type) {
+        case PAWN:
+            if (!piece.has_moved) {
+
+            }
+            break;
+        case ROOK:
+            break;
+        case KNIGHT:
+            break;
+        case BISHOP:
+            break;
+        case KING:
+            if (!piece.has_moved) {
+
+            }
+            break;
+        case QUEEN:
+            break;
+    }
+
+    return NULL;
+}
+
 uint8_t board_move_piece(Piece board[BOARD_ROW][BOARD_COL], Piece *piece, uint8_t letter, uint8_t number){
     assert(board);
     assert(piece);
     assert(piece->type != NONE);
 
-    uint8_t previous_letter = piece->pos.y, previous_number = piece->pos.x;
+    uint8_t previous_number = piece->pos.x, previous_letter = piece->pos.y;
 
     piece->has_moved = true;
     board[number][letter] = *piece;

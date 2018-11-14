@@ -40,7 +40,7 @@ void game_loop(Game *game){
 
         piece = board_get_piece(game->board, piece_letter, piece_num);
 
-        char position[2];
+        char position[5]; //5 to allow for castling
         do {
             printf("Please enter the position you would like to move that piece to: ");
             scanf("%s", position);
@@ -53,7 +53,7 @@ void game_loop(Game *game){
 
     switch (move_ret) {
         case MOVE_SUCCESS:
-            printf("Move succesful");
+            printf("Move succesful\n");
             break;
         case MOVE_PROMOTION:
             do {
