@@ -80,7 +80,7 @@ uint8_t board_move_piece(Piece board[BOARD_ROW][BOARD_COL], Piece *piece, uint8_
     board[previous_number][previous_letter].type = NONE;
 
     // TODO: find a better place to handle promotion
-    if (piece->type == PAWN && (piece->pos.y == 7 || piece->pos.y == 0)) {
+    if (piece->type == PAWN && (piece->pos.x == 7 || piece->pos.x == 0)) {
         return MOVE_PROMOTION;
     }
 
