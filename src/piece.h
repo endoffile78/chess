@@ -41,6 +41,10 @@ void piece_print(Piece piece);
  */
 bool piece_is_color(Piece piece, PLAYER color);
 
+uint8_t piece_convert(char *name);
+
+bool piece_promote(Piece *piece, uint8_t new_type);
+
 void piece_valid_moves(Piece piece);
 
 #endif
