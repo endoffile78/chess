@@ -41,15 +41,17 @@ void board_create(Piece board[BOARD_ROW][BOARD_COL]){
 }
 
 void board_print(Piece board[BOARD_ROW][BOARD_COL]){
+    printf("    ---------------\n");
     for (int i = 0; i < BOARD_ROW; i++) {
-        printf("%d ", i + 1);
+        printf("%d | ", i + 1);
         for (int j = 0; j < BOARD_COL; j++) {
             piece_print(board[i][j]);
             printf(" ");
         }
-        printf("\n");
+        printf("| \n");
     }
-    printf("  a b c d e f g h\n");
+    printf("    ---------------\n");
+    printf("    a b c d e f g h\n");
 }
 
 bool board_contains_piece(Piece board[BOARD_ROW][BOARD_COL], uint8_t letter, uint8_t number){

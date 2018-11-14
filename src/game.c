@@ -22,11 +22,7 @@ Game *game_create(void){
 void game_loop(Game *game){
     board_print(game->board);
 
-    if (game->player_turn == PLAYER_WHITE) {
-        printf("It is whites turn.\n");
-    } else {
-        printf("It is blacks turn.\n");
-    }
+    printf("It is %s's turn.\n", player_names[game->player_turn]);
 
     Piece *piece = NULL;
     uint8_t pos_letter = 0, pos_num = 0;

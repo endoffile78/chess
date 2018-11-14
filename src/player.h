@@ -6,6 +6,8 @@ enum PLAYER {
     PLAYER_BLACK,
 };
 
+extern const char *player_names[2];
+
 typedef enum PLAYER PLAYER;
 
 /*
