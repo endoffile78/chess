@@ -39,7 +39,7 @@ void game_loop(Game *game){
             scanf("%s", piece_pos);
         } while (!position_parse(piece_pos, &piece_letter, &piece_num)
                  || !board_contains_piece(game->board, piece_letter, piece_num)
-                 || !piece_is_color(game->board[piece_letter][piece_num], game->player_turn));
+                 || !piece_is_color(game->board[piece_num][piece_letter], game->player_turn));
 
         piece = board_get_piece(game->board, piece_letter, piece_num);
 
