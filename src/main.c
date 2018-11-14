@@ -25,6 +25,8 @@ int main(void) {
         game_loop(game);
     }
 
+    printf("The game is over.\n");
+
     game_end(game);
 
     return 0;

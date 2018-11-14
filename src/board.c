@@ -42,7 +42,6 @@ void board_create(Piece board[BOARD_ROW][BOARD_COL]){
 
 void board_print(Piece board[BOARD_ROW][BOARD_COL]){
     for (int i = 0; i < BOARD_ROW; i++) {
-        //printf("%d ", 8 - i);
         printf("%d ", i + 1);
         for (int j = 0; j < BOARD_COL; j++) {
             piece_print(board[i][j]);
@@ -73,10 +72,8 @@ bool board_move_piece(Piece board[BOARD_ROW][BOARD_COL], Piece *piece, uint8_t l
     piece->has_moved = true;
     board[number][letter] = *piece;
     position_set(&board[number][letter].pos, letter, number);
-    printf("Placing piece at %d %d\n", letter, number);
 
     board[previous_number][previous_letter].type = NONE;
-    printf("Setting piece at %d %d to none\n", previous_letter, previous_number);
 
     return true;
 }
