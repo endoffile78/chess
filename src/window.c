@@ -5,10 +5,6 @@
 #include "piece.h"
 #include "window.h"
 
-#define MAX_WINDOWS 5
-
-Window wins[MAX_WINDOWS];
-
 Window *window_create(char *title, int width, int height, int x, int y){
     Window *win = calloc(1, sizeof(Window));
     if (!win) {
