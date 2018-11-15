@@ -2,6 +2,7 @@
 #include <string.h>
 #include <ctype.h>
 #include <assert.h>
+#include <ncurses.h>
 
 #include "piece.h"
 #include "player.h"
@@ -44,7 +45,7 @@ void piece_print(Piece piece){
         c = tolower(c); //distinguish between the owner of the pieces
     }
 
-    printf("%c", c);
+    printw("%c", c);
 }
 
 bool piece_is_color(Piece piece, PLAYER color){

@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -std=c99
-LDFLAGS =
+LDFLAGS = -lncurses
 SRCS = $(wildcard src/*.c)
 HDRS = $(wildcard src/*.h)
 OBJS = $(patsubst %.c, %.o, $(SRCS))
@@ -12,7 +12,7 @@ all: $(EXECUTABLE)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 $(EXECUTABLE): $(OBJS)
-	$(CC) -o $@ $^ $(CFLAGS)
+	$(CC) -o $@ $^ $(LDFLAGS) $(CFLAGS)
 
 clean:
 	rm -f src/*.o

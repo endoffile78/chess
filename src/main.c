@@ -3,15 +3,47 @@
 
 #include "game.h"
 #include "board.h"
+#include "ui.h"
+#include "window.h"
 
-bool quit = false;
-
-void signal_handler(int signal) {
-    (void) signal;
-    quit = true;
-}
+#include <ncurses.h>
 
 int main(void) {
+
+    ui_init();
+
+    /*
+    signal(SIGWINCH, ui_resize_handler);
+    */
+
+    Game *game = game_create();
+    if (!game) {
+        printf("Error allocating memory for game.");
+        return 1;
+    }
+
+    int terminal_x, terminal_y, input_size = 0;
+    getmaxyx(stdscr, terminal_y, terminal_x);
+
+    Window *board = window_create("Board", terminal_x, terminal_y - input_size, 0, 0);
+    Window *input = window_create("Input", terminal_x, input_size, 0, terminal_y - input_size);
+
+    while (true) {
+        game_loop(game);
+        int c = getch();
+        if (c == 'q') {
+            break;
+        }
+    }
+
+    window_destroy(board);
+    window_destroy(input);
+
+    game_end(game);
+
+    ui_destroy();
+
+#if 0
     Game *game = game_create();
     if (!game) {
         printf("Error allocating memory for game.");
@@ -36,7 +68,7 @@ int main(void) {
                 do {
                     char input[2];
                     do {
-                        printf("Please enter the position of the piece you would like to move: ");
+                        printw("Please enter the position of the piece you would like to move: ");
                         scanf("%s", input);
                     } while (!position_parse(&piece_pos, input)
                              || !board_contains_piece(game->board, piece_pos.x, piece_pos.y)
@@ -46,7 +78,7 @@ int main(void) {
 
                     char position[5]; //5 to allow for castling
                     do {
-                        printf("Please enter the position you would like to move that piece to: ");
+                        printw("Please enter the position you would like to move that piece to: ");
                         scanf("%s", position);
                     } while (!position_parse(&move_pos, position));
                 } while ((move_ret = board_move_piece(game->board, piece, move_pos.x, move_pos.y)) == MOVE_ILLEGAL);
@@ -56,13 +88,13 @@ int main(void) {
 
                 switch (move_ret) {
                     case MOVE_SUCCESS: {
-                        printf("Move succesful\n");
+                        printw("Move succesful\n");
                         break;
                     }
                     case MOVE_PROMOTION: {
                         PIECE_TYPE type = NONE;
                         do {
-                            printf("What would you like to promote your pawn to (queen, rook, bishop, knight): \n");
+                            printw("What would you like to promote your pawn to (queen, rook, bishop, knight): \n");
                             scanf("%s", piece_name);
                             type = piece_convert(piece_name);
                         } while (!piece_promote(piece, type));
@@ -74,14 +106,14 @@ int main(void) {
             case CHECK: {
                 Piece *piece = board_find_piece(game->board, game->player_turn, KING);
                 if (!piece) {
-                    printf("King could not be found, this should never happen.");
+                    printw("King could not be found, this should never happen.");
                     break;
                 }
 
                 char input[2];
                 Position pos;
                 do {
-                    printf("Where would you like to move your king to: \n");
+                    printw("Where would you like to move your king to: \n");
                     scanf("%s", input);
                 } while(!position_parse(&pos, input));
                 board_move_piece(game->board, piece, pos.x, pos.y);
@@ -92,12 +124,11 @@ int main(void) {
                 quit = true;
                 break;
         }
-        game_loop(game);
     }
 
-    printf("The game is over.\n");
+    printw("The game is over.\n");
 
     game_end(game);
-
+#endif
     return 0;
 }
