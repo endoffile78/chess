@@ -16,38 +16,6 @@ void piece_init(Piece *piece, PIECE_TYPE type, PLAYER color, uint8_t x, uint8_t 
     position_set(&piece->pos, x, y);
 }
 
-void piece_print(Piece piece){
-    char c = '-'; //representation for empty spots
-    switch (piece.type) {
-        case PAWN:
-            c = 'P';
-            break;
-        case ROOK:
-            c = 'R';
-            break;
-        case KNIGHT:
-            c = 'N';
-            break;
-        case BISHOP:
-            c = 'B';
-            break;
-        case KING:
-            c = 'K';
-            break;
-        case QUEEN:
-            c = 'Q';
-            break;
-        default:
-            break;
-    }
-
-    if (piece.color == PLAYER_BLACK) {
-        c = tolower(c); //distinguish between the owner of the pieces
-    }
-
-    printw("%c", c);
-}
-
 bool piece_is_color(Piece piece, PLAYER color){
     return piece.color == color;
 }

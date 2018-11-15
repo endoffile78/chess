@@ -16,14 +16,13 @@ struct window {
     char *title;
     int width, height;
     int x, y;
-    void *userdata;
 };
 
 typedef struct window Window;
 
 Window *window_create(char *title, int width, int height, int x, int y);
 
-void window_board_draw(Piece board[BOARD_ROW][BOARD_COL]);
+void window_board_draw(Window *win, Piece board[BOARD_ROW][BOARD_COL]);
 
 void window_destroy(Window *win);
 

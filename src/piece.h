@@ -34,11 +34,6 @@ typedef struct piece Piece;
 void piece_init(Piece *piece, PIECE_TYPE type, PLAYER color, uint8_t x, uint8_t y);
 
 /*
- * Prints out a piece
- */
-void piece_print(Piece piece);
-
-/*
  * Checks if the piece is the same color as the specificed color
  */
 bool piece_is_color(Piece piece, PLAYER color);

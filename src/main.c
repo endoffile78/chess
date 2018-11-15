@@ -26,18 +26,18 @@ int main(void) {
     getmaxyx(stdscr, terminal_y, terminal_x);
 
     Window *board = window_create("Board", terminal_x, terminal_y - input_size, 0, 0);
-    Window *input = window_create("Input", terminal_x, input_size, 0, terminal_y - input_size);
+    Window *messages = window_create("Messages", terminal_x, input_size, 0, terminal_y - input_size);
 
     while (true) {
-        game_loop(game);
-        int c = getch();
+        window_board_draw(board, game->board);
+        char c = wgetch(board->w);
         if (c == 'q') {
             break;
         }
     }
 
     window_destroy(board);
-    window_destroy(input);
+    window_destroy(messages);
 
     game_end(game);
 
