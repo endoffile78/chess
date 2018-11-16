@@ -13,6 +13,8 @@ Game *game_create(void){
     }
 
     board_create(game->board);
+    player_init(&game->players[0], PLAYER_WHITE, HUMAN);
+    player_init(&game->players[1], PLAYER_BLACK, HUMAN);
     game->player_turn = PLAYER_WHITE; //white always goes first
     game->status = NORMAL;
 
@@ -23,6 +25,11 @@ void game_loop(Game *game){
     board_print(game->board);
 
     printf("It is %s's turn.\n", player_names[game->player_turn]);
+
+    Player player = game->players[game->player_turn];
+    if (player.type == COMPUTER) {
+        return;
+    }
 
     Piece *piece = NULL;
     uint8_t pos_letter = 0, pos_num = 0;

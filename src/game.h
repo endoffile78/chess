@@ -14,6 +14,7 @@ enum {
 
 struct game {
     Piece board[BOARD_ROW][BOARD_COL];
+    Player players[2];
     PLAYER player_turn;
     uint8_t status;
 };
