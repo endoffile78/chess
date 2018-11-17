@@ -32,34 +32,34 @@ bool position_parse(char *input, Position *pos){
         return false;
     }
 
+    pos->x = input[1] - 48 - 1; //convert the number into an int and subtract 1
+
     switch (input[0]) {
         case 'a':
-            pos->x = 0;
+            pos->y = 0;
             break;
         case 'b':
-            pos->x = 1;
+            pos->y = 1;
             break;
         case 'c':
-            pos->x = 2;
+            pos->y = 2;
             break;
         case 'd':
-            pos->x = 3;
+            pos->y = 3;
             break;
         case 'e':
-            pos->x = 4;
+            pos->y = 4;
             break;
         case 'f':
-            pos->x = 5;
+            pos->y = 5;
             break;
         case 'g':
-            pos->x = 6;
+            pos->y = 6;
             break;
         case 'h':
-            pos->x = 7;
+            pos->y = 7;
             break;
     }
-
-    pos->y = input[1] - 48 - 1; //convert the number into an int and subtract 1
 
     return true;
 }
