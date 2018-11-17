@@ -20,6 +20,6 @@ void position_set(Position *pos, uint8_t x, uint8_t y);
  * returns true on success
  * returns false on error
  */
-bool position_parse(char *input, uint8_t *x, uint8_t *y);
+bool position_parse(char *input, Position *pos);
 
 #endif

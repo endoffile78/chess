@@ -11,8 +11,9 @@ void position_set(Position *pos, uint8_t x, uint8_t y){
     pos->y = y;
 }
 
-//TODO: figure out the best way to handle castling. King side: 0-0 queen sid: 0-0-0
-bool position_parse(char *input, uint8_t *x, uint8_t *y){
+bool position_parse(char *input, Position *pos){
+    assert(pos);
+
     if (strlen(input) < 2) {
         return false;
     }
@@ -31,37 +32,34 @@ bool position_parse(char *input, uint8_t *x, uint8_t *y){
         return false;
     }
 
-    assert(x);
-    assert(y);
-
     switch (input[0]) {
         case 'a':
-            *x = 0;
+            pos->y = 0;
             break;
         case 'b':
-            *x = 1;
+            pos->y = 1;
             break;
         case 'c':
-            *x = 2;
+            pos->y = 2;
             break;
         case 'd':
-            *x = 3;
+            pos->y = 3;
             break;
         case 'e':
-            *x = 4;
+            pos->y = 4;
             break;
         case 'f':
-            *x = 5;
+            pos->y = 5;
             break;
         case 'g':
-            *x = 6;
+            pos->y = 6;
             break;
         case 'h':
-            *x = 7;
+            pos->y = 7;
             break;
     }
 
-    *y = input[1] - 48 - 1; //convert the number into an int and subtract 1
+    pos->x = input[1] - 48 - 1; //convert the number into an int and subtract 1
 
     return true;
 }
