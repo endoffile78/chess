@@ -41,21 +41,21 @@ void game_loop(Game *game){
             printf("Please enter the position of the piece you would like to move: ");
             scanf("%s", input);
         } while (!position_parse(input, &piece_pos)
-                 || !board_contains_piece(game->board, piece_pos.y, piece_pos.x)
-                 || !piece_is_color(game->board[piece_pos.x][piece_pos.y], game->player_turn));
+                 || !board_contains_piece(game->board, piece_pos.x, piece_pos.y)
+                 || !piece_is_color(game->board[piece_pos.y][piece_pos.x], game->player_turn));
 
-        piece = board_get_piece(game->board, piece_pos.y, piece_pos.x);
+        piece = board_get_piece(game->board, piece_pos.x, piece_pos.y);
 
         char position[5]; //5 to allow for castling
         do {
             printf("Please enter the position you would like to move that piece to: ");
             scanf("%s", position);
         } while (!position_parse(position, &move_pos));
-    } while ((move_ret = board_move_piece(game->board, piece, move_pos.y, move_pos.x)) == MOVE_ILLEGAL);
+    } while ((move_ret = board_move_piece(game->board, piece, move_pos.x, move_pos.y)) == MOVE_ILLEGAL);
 
     char piece_name[10];
     uint8_t type = 0;
-    piece = board_get_piece(game->board, move_pos.y, move_pos.x);
+    piece = board_get_piece(game->board, move_pos.x, move_pos.y);
 
     switch (move_ret) {
         case MOVE_SUCCESS:

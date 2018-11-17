@@ -25,12 +25,12 @@ void board_print(Piece board[BOARD_ROW][BOARD_COL]);
 /*
  * Checks if there is a piece at the specified location
  */
-bool board_contains_piece(Piece board[BOARD_ROW][BOARD_COL], uint8_t letter, uint8_t number);
+bool board_contains_piece(Piece board[BOARD_ROW][BOARD_COL], uint8_t x, uint8_t y);
 
 /*
  * Gets the piece at the specified location
  */
-Piece *board_get_piece(Piece board[BOARD_ROW][BOARD_COL], uint8_t letter, uint8_t number);
+Piece *board_get_piece(Piece board[BOARD_ROW][BOARD_COL], uint8_t x, uint8_t y);
 
 /*
  * Moves a piece on the board
@@ -38,6 +38,6 @@ Piece *board_get_piece(Piece board[BOARD_ROW][BOARD_COL], uint8_t letter, uint8_
  * returns MOVE_SUCCESS on a succesful move
  * returns MOVE_PROMOTION on a move that results in a promotion
  */
-uint8_t board_move_piece(Piece board[BOARD_ROW][BOARD_COL], Piece *piece, uint8_t letter, uint8_t number);
+uint8_t board_move_piece(Piece board[BOARD_ROW][BOARD_COL], Piece *piece, uint8_t x, uint8_t y);
 
 #endif

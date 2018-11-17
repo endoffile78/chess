@@ -56,14 +56,14 @@ void board_print(Piece board[BOARD_ROW][BOARD_COL]){
     printf("    a b c d e f g h\n");
 }
 
-bool board_contains_piece(Piece board[BOARD_ROW][BOARD_COL], uint8_t letter, uint8_t number){
+bool board_contains_piece(Piece board[BOARD_ROW][BOARD_COL], uint8_t x, uint8_t y){
     assert(board);
-    return board[number][letter].type != NONE;
+    return board[y][x].type != NONE;
 }
 
-Piece *board_get_piece(Piece board[BOARD_ROW][BOARD_COL], uint8_t letter, uint8_t number){
+Piece *board_get_piece(Piece board[BOARD_ROW][BOARD_COL], uint8_t x, uint8_t y){
     assert(board);
-    return &board[number][letter];
+    return &board[y][x];
 }
 
 Position *board_valid_moves(Piece board[BOARD_ROW][BOARD_COL], Piece piece){
@@ -98,7 +98,7 @@ Position *board_valid_moves(Piece board[BOARD_ROW][BOARD_COL], Piece piece){
     return NULL;
 }
 
-uint8_t board_move_piece(Piece board[BOARD_ROW][BOARD_COL], Piece *piece, uint8_t letter, uint8_t number){
+uint8_t board_move_piece(Piece board[BOARD_ROW][BOARD_COL], Piece *piece, uint8_t x, uint8_t y){
     assert(board);
     assert(piece);
     assert(piece->type != NONE);
@@ -106,15 +106,15 @@ uint8_t board_move_piece(Piece board[BOARD_ROW][BOARD_COL], Piece *piece, uint8_
     uint8_t previous_number = piece->pos.x, previous_letter = piece->pos.y;
 
     piece->has_moved = true;
-    board[number][letter] = *piece;
+    board[y][x] = *piece;
     //TODO: figure out how to get rid of this if possible
-    piece = board_get_piece(board, letter, number); //update pointer
-    position_set(&piece->pos, number, letter);
+    piece = board_get_piece(board, x, y); //update pointer
+    position_set(&piece->pos, x, y);
 
     board[previous_number][previous_letter].type = NONE;
 
     // TODO: find a better place to handle promotion
-    if (piece->type == PAWN && (piece->pos.x == 7 || piece->pos.x == 0)) {
+    if (piece->type == PAWN && (piece->pos.y == 7 || piece->pos.y == 0)) {
         return MOVE_PROMOTION;
     }
 
