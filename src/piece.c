@@ -70,6 +70,7 @@ uint8_t piece_convert(char *name){
 }
 
 bool piece_promote(Piece *piece, uint8_t new_type){
+    assert(piece);
     assert(piece->type == PAWN);
 
     if (new_type != QUEEN && new_type != ROOK
