@@ -20,11 +20,11 @@ void position_set(Position *pos, uint8_t x, uint8_t y);
  * returns true on success
  * returns false on error
  */
-bool position_parse(const char *input, Position *pos);
+bool position_parse(Position *pos, const char *input);
 
 /*
  * Converts the position into algebraic notation
  */
-void position_convert(char notation[2], Position pos);
+void position_convert(Position pos, char notation[2]);
 
 #endif

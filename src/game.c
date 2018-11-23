@@ -40,7 +40,7 @@ void game_loop(Game *game){
         do {
             printf("Please enter the position of the piece you would like to move: ");
             scanf("%s", input);
-        } while (!position_parse(input, &piece_pos)
+        } while (!position_parse(&piece_pos, input)
                  || !board_contains_piece(game->board, piece_pos.x, piece_pos.y)
                  || !piece_is_color(game->board[piece_pos.x][piece_pos.y], game->player_turn));
 
@@ -50,7 +50,7 @@ void game_loop(Game *game){
         do {
             printf("Please enter the position you would like to move that piece to: ");
             scanf("%s", position);
-        } while (!position_parse(position, &move_pos));
+        } while (!position_parse(&move_pos, position));
     } while ((move_ret = board_move_piece(game->board, piece, move_pos.x, move_pos.y)) == MOVE_ILLEGAL);
 
     char piece_name[10];

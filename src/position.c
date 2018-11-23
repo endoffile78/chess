@@ -11,7 +11,7 @@ void position_set(Position *pos, uint8_t x, uint8_t y){
     pos->y = y;
 }
 
-bool position_parse(const char *input, Position *pos){
+bool position_parse(Position *pos, const char *input){
     assert(pos);
 
     if (strlen(input) < 2) {
@@ -64,7 +64,7 @@ bool position_parse(const char *input, Position *pos){
     return true;
 }
 
-void position_convert(char notation[2], Position pos){
+void position_convert(Position pos, char notation[2]){
     assert(notation);
 
     switch (pos.y) {
