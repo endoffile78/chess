@@ -51,7 +51,7 @@ bool piece_is_color(Piece piece, PLAYER color){
     return piece.color == color;
 }
 
-uint8_t piece_convert(char *name){
+uint8_t piece_convert(const char *name){
     if (strcmp(name, "king") == 0) {
         return KING;
     } else if (strcmp(name, "queen") == 0) {
