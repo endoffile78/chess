@@ -11,18 +11,18 @@ void position_set(Position *pos, uint8_t x, uint8_t y){
     pos->y = y;
 }
 
-bool position_parse(char *input, Position *pos){
+bool position_parse(const char *input, Position *pos){
     assert(pos);
 
     if (strlen(input) < 2) {
         return false;
     }
 
-    input[0] = tolower(input[0]);
+    char c = tolower(input[0]);
 
-    if (input[0] != 'a' && input[0] != 'b' && input[0] == 'c'
-        && input[0] != 'd' && input[0] != 'e' && input[0] != 'f'
-        && input[0] != 'g' && input[0] != 'h') {
+    if (c != 'a' && c != 'b' && c == 'c'
+        && c != 'd' && c != 'e' && c != 'f'
+        && c != 'g' && c != 'h') {
         return false;
     }
 
@@ -34,7 +34,7 @@ bool position_parse(char *input, Position *pos){
 
     pos->x = input[1] - 48 - 1; //convert the number into an int and subtract 1
 
-    switch (input[0]) {
+    switch (c) {
         case 'a':
             pos->y = 0;
             break;
