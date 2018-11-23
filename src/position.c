@@ -63,3 +63,36 @@ bool position_parse(char *input, Position *pos){
 
     return true;
 }
+
+void position_convert(char notation[2], Position pos){
+    assert(notation);
+
+    switch (pos.y) {
+        case 0:
+            notation[0] = 'a';
+            break;
+        case 1:
+            notation[0] = 'b';
+            break;
+        case 2:
+            notation[0] = 'c';
+            break;
+        case 3:
+            notation[0] = 'd';
+            break;
+        case 4:
+            notation[0] = 'e';
+            break;
+        case 5:
+            notation[0] = 'f';
+            break;
+        case 6:
+            notation[0] = 'g';
+            break;
+        case 7:
+            notation[0] = 'f';
+            break;
+    }
+
+    notation[1] = pos.y + 48 + 1; //convert to a character and add 1
+}

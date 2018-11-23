@@ -22,4 +22,9 @@ void position_set(Position *pos, uint8_t x, uint8_t y);
  */
 bool position_parse(char *input, Position *pos);
 
+/*
+ * Converts the position into algebraic notation
+ */
+void position_convert(char notation[2], Position pos);
+
 #endif
