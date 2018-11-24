@@ -120,3 +120,15 @@ uint8_t board_move_piece(Piece board[BOARD_ROW][BOARD_COL], Piece *piece, uint8_
 
     return MOVE_SUCCESS;
 }
+
+Piece *board_find_piece(Piece board[BOARD_ROW][BOARD_COL], PLAYER color, PIECE_TYPE type){
+    for (int i = 0; i < BOARD_ROW; i++) {
+        for (int j = 0; i < BOARD_COL; j++) {
+            if (board[i][j].type == type && board[i][j].color == color) {
+                return &board[i][j];
+            }
+        }
+    }
+
+    return NULL;
+}

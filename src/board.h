@@ -40,4 +40,11 @@ Piece *board_get_piece(Piece board[BOARD_ROW][BOARD_COL], uint8_t x, uint8_t y);
  */
 uint8_t board_move_piece(Piece board[BOARD_ROW][BOARD_COL], Piece *piece, uint8_t x, uint8_t y);
 
+/*
+ * Finds a piece on the board
+ * returns the piece if is found
+ * returns NULL if no piece is found
+ */
+Piece *board_find_piece(Piece board[BOARD_ROW][BOARD_COL], PLAYER color, PIECE_TYPE type);
+
 #endif
