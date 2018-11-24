@@ -7,7 +7,7 @@
 #include "player.h"
 #include "position.h"
 
-void piece_init(Piece *piece, uint8_t type, PLAYER color, int x, int y){
+void piece_init(Piece *piece, uint8_t type, PLAYER color, uint8_t x, uint8_t y){
     assert(piece);
     piece->type = type;
     piece->color = color;

@@ -29,7 +29,7 @@ typedef struct piece Piece;
 /*
  * Intitializes a piece
  */
-void piece_init(Piece *piece, uint8_t type, PLAYER owner, int x, int y);
+void piece_init(Piece *piece, uint8_t type, PLAYER color, uint8_t x, uint8_t y);
 
 /*
  * Prints out a piece
