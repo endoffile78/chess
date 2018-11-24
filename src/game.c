@@ -54,7 +54,7 @@ void game_loop(Game *game){
     } while ((move_ret = board_move_piece(game->board, piece, move_pos.x, move_pos.y)) == MOVE_ILLEGAL);
 
     char piece_name[10];
-    uint8_t type = 0;
+    PIECE_TYPE type = NONE;
     piece = board_get_piece(game->board, move_pos.x, move_pos.y);
 
     switch (move_ret) {

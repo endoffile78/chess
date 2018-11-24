@@ -7,7 +7,7 @@
 #include "player.h"
 #include "position.h"
 
-void piece_init(Piece *piece, uint8_t type, PLAYER color, uint8_t x, uint8_t y){
+void piece_init(Piece *piece, PIECE_TYPE type, PLAYER color, uint8_t x, uint8_t y){
     assert(piece);
     piece->type = type;
     piece->color = color;
@@ -51,7 +51,7 @@ bool piece_is_color(Piece piece, PLAYER color){
     return piece.color == color;
 }
 
-uint8_t piece_convert(const char *name){
+PIECE_TYPE piece_convert(const char *name){
     if (strcmp(name, "king") == 0) {
         return KING;
     } else if (strcmp(name, "queen") == 0) {
@@ -69,7 +69,7 @@ uint8_t piece_convert(const char *name){
     }
 }
 
-bool piece_promote(Piece *piece, uint8_t new_type){
+bool piece_promote(Piece *piece, PIECE_TYPE new_type){
     assert(piece);
     assert(piece->type == PAWN);
 
