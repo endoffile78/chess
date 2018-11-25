@@ -25,6 +25,8 @@ Game *game_create(void);
 
 void game_loop(Game *game);
 
+Player *game_current_player(Game *game);
+
 void game_end(Game *game);
 
 #endif

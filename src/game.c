@@ -22,6 +22,7 @@ Game *game_create(void){
     return game;
 }
 
+#if 0
 void game_loop(Game *game){
     assert(game);
 
@@ -74,6 +75,17 @@ void game_loop(Game *game){
     }
 
     game->player_turn = player_switch(game->player_turn);
+}
+#endif
+
+void game_loop(Game *game){
+    assert(game);
+
+    game->player_turn = player_switch(game->player_turn);
+}
+
+Player *game_current_player(Game *game){
+    return &game->players[game->player_turn];
 }
 
 void game_end(Game *game){

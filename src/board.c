@@ -82,6 +82,8 @@ Position *board_valid_moves(Piece board[BOARD_ROW][BOARD_COL], Piece piece){
     int letter = piece.pos.y, number = piece.pos.x;
 
     switch (piece.type) {
+        case NONE:
+            break;
         case PAWN:
             if (!piece.has_moved) {
 
