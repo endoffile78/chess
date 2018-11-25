@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
 
 #include "game.h"
 
@@ -22,6 +23,8 @@ Game *game_create(void){
 }
 
 void game_loop(Game *game){
+    assert(game);
+
     board_print(game->board);
 
     printf("It is %s's turn.\n", player_names[game->player_turn]);

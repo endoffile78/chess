@@ -58,15 +58,22 @@ void board_print(Piece board[BOARD_ROW][BOARD_COL]){
 
 bool board_contains_piece(Piece board[BOARD_ROW][BOARD_COL], uint8_t x, uint8_t y){
     assert(board);
+    assert(x < BOARD_ROW);
+    assert(y < BOARD_COL);
     return board[x][y].type != NONE;
 }
 
 Piece *board_get_piece(Piece board[BOARD_ROW][BOARD_COL], uint8_t x, uint8_t y){
     assert(board);
+    assert(x < BOARD_ROW);
+    assert(y < BOARD_COL);
     return &board[x][y];
 }
 
 Position *board_valid_moves(Piece board[BOARD_ROW][BOARD_COL], Piece piece){
+    assert(board);
+    assert(piece.type != NONE);
+
     uint8_t board_row = 0;
     if (piece_is_color(piece, PLAYER_BLACK)) {
         board_row = 7;
@@ -102,6 +109,8 @@ uint8_t board_move_piece(Piece board[BOARD_ROW][BOARD_COL], Piece *piece, uint8_
     assert(board);
     assert(piece);
     assert(piece->type != NONE);
+    assert(x < BOARD_ROW);
+    assert(y < BOARD_COL);
 
     uint8_t previous_x = piece->pos.x, previous_y = piece->pos.y;
 
@@ -122,6 +131,7 @@ uint8_t board_move_piece(Piece board[BOARD_ROW][BOARD_COL], Piece *piece, uint8_
 }
 
 Piece *board_find_piece(Piece board[BOARD_ROW][BOARD_COL], PLAYER color, PIECE_TYPE type){
+    assert(board);
     for (int i = 0; i < BOARD_ROW; i++) {
         for (int j = 0; i < BOARD_COL; j++) {
             if (board[i][j].type == type && board[i][j].color == color) {
