@@ -80,17 +80,21 @@ int main(void) {
 
                 char input[2];
                 Position pos;
+
                 do {
-                    printf("Where would you like to move your king to: \n");
-                    scanf("%s", input);
-                } while(!position_parse(&pos, input));
-                board_move_piece(game->board, piece, pos.x, pos.y);
+                    do {
+                        printf("Where would you like to move your king to: \n");
+                        scanf("%s", input);
+                    } while(!position_parse(&pos, input));
+                } while (board_move_piece(game->board, piece, pos.x, pos.y) == MOVE_ILLEGAL);
+
                 break;
             }
             case STALEMATE:
-            case CHECKMATE:
+            case CHECKMATE: {
                 quit = true;
                 break;
+            }
         }
         game_loop(game);
     }
