@@ -36,12 +36,12 @@ void piece_init(Piece *piece, PIECE_TYPE type, PLAYER color, uint8_t x, uint8_t 
 /*
  * Prints out a piece
  */
-void piece_print(Piece piece);
+void piece_print(const Piece *piece);
 
 /*
  * Checks if the piece is the same color as the specificed color
  */
-bool piece_is_color(Piece piece, PLAYER color);
+bool piece_is_color(const Piece *piece, PLAYER color);
 
 PIECE_TYPE piece_convert(const char *name);
 

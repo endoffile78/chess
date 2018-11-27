@@ -47,7 +47,7 @@ void board_print(Piece board[BOARD_ROW][BOARD_COL]){
     for (int i = 0; i < BOARD_ROW; i++) {
         printf("%d | ", i + 1);
         for (int j = 0; j < BOARD_COL; j++) {
-            piece_print(board[i][j]);
+            piece_print(&board[i][j]);
             printf(" ");
         }
         printf("| \n");
@@ -70,22 +70,15 @@ Piece *board_get_piece(Piece board[BOARD_ROW][BOARD_COL], uint8_t x, uint8_t y){
     return &board[x][y];
 }
 
-Position *board_valid_moves(Piece board[BOARD_ROW][BOARD_COL], Piece piece){
+Position *board_valid_moves(Piece board[BOARD_ROW][BOARD_COL], Piece *piece){
     assert(board);
-    assert(piece.type != NONE);
+    assert(piece->type != NONE);
 
-    uint8_t board_row = 0;
-    if (piece_is_color(piece, PLAYER_BLACK)) {
-        board_row = 7;
-    }
-
-    int letter = piece.pos.y, number = piece.pos.x;
-
-    switch (piece.type) {
+    switch (piece->type) {
         case NONE:
             break;
         case PAWN:
-            if (!piece.has_moved) {
+            if (!piece->has_moved) {
 
             }
             break;
@@ -96,7 +89,7 @@ Position *board_valid_moves(Piece board[BOARD_ROW][BOARD_COL], Piece piece){
         case BISHOP:
             break;
         case KING:
-            if (!piece.has_moved) {
+            if (!piece->has_moved) {
 
             }
             break;

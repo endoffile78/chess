@@ -40,7 +40,7 @@ int main(void) {
                         scanf("%s", input);
                     } while (!position_parse(&piece_pos, input)
                              || !board_contains_piece(game->board, piece_pos.x, piece_pos.y)
-                             || !piece_is_color(game->board[piece_pos.x][piece_pos.y], game->player_turn));
+                             || !piece_is_color(&game->board[piece_pos.x][piece_pos.y], game->player_turn));
 
                     piece = board_get_piece(game->board, piece_pos.x, piece_pos.y);
 

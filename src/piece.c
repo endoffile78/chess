@@ -15,9 +15,9 @@ void piece_init(Piece *piece, PIECE_TYPE type, PLAYER color, uint8_t x, uint8_t 
     position_set(&piece->pos, x, y);
 }
 
-void piece_print(Piece piece){
+void piece_print(const Piece *piece){
     char c = '-'; //representation for empty spots
-    switch (piece.type) {
+    switch (piece->type) {
         case PAWN:
             c = 'P';
             break;
@@ -40,15 +40,15 @@ void piece_print(Piece piece){
             break;
     }
 
-    if (piece.color == PLAYER_BLACK) {
+    if (piece->color == PLAYER_BLACK) {
         c = tolower(c); //distinguish between the owner of the pieces
     }
 
     printf("%c", c);
 }
 
-bool piece_is_color(Piece piece, PLAYER color){
-    return piece.color == color;
+bool piece_is_color(const Piece *piece, PLAYER color){
+    return piece->color == color;
 }
 
 PIECE_TYPE piece_convert(const char *name){
